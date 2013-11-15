@@ -8,7 +8,7 @@ USE_CAMERA_STUB := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/baffin
-TARGET_KERNEL_CONFIG := cyanogenmod_i9082_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_baffin_defconfig
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
