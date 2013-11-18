@@ -15,6 +15,9 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/baffin/bluetooth
 
+# Wi-Fi
+BOARD_WLAN_DEVICE_REV := bcm4334
+
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := device/samsung/baffin/rootdir/fstab.capri_ss_baffin
