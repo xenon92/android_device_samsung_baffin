@@ -14,8 +14,6 @@ TARGET_KERNEL_CONFIG := cyanogenmod_baffin_defconfig
 BOARD_WLAN_DEVICE_REV := bcm4334
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/baffin/bluetooth
 
 # Recovery
