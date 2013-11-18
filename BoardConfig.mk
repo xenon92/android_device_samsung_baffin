@@ -11,8 +11,6 @@ TARGET_KERNEL_SOURCE := kernel/samsung/baffin
 TARGET_KERNEL_CONFIG := cyanogenmod_baffin_defconfig
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/baffin/bluetooth
 
 # Wi-Fi
