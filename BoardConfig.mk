@@ -10,6 +10,9 @@ USE_CAMERA_STUB := true
 TARGET_KERNEL_SOURCE := kernel/samsung/baffin
 TARGET_KERNEL_CONFIG := cyanogenmod_baffin_defconfig
 
+# Wifi
+BOARD_WLAN_DEVICE_REV := bcm4334
+
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/baffin/bluetooth
 

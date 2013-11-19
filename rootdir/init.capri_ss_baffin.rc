@@ -1,5 +1,4 @@
 import init.bcm281x5.usb.rc
-import init.bt.rc
 import init.log.rc
 
 on early-init
@@ -29,40 +28,27 @@ on init
     mount tmpfs tmpfs /tmp
     chmod 1775 /tmp
 
-    # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
 
+    mkdir /storage/sdcard1 0000 system system
+    mkdir /storage/usbdisk 0000 system system
+
     export EXTERNAL_STORAGE /storage/emulated/legacy
+    export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
 
-    # Support legacy paths
+# for backwards compatibility
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-
-    export SECONDARY_STORAGE /storage/extSdCard
-    mkdir /storage/extSdCard 0555 root root
-
-# map "real" external storages paths also in same way. backwards compatibility.
-    symlink /storage/extSdCard /mnt/extSdCard
-    symlink /storage/UsbDriveA /mnt/UsbDriveA
-    symlink /storage/UsbDriveB /mnt/UsbDriveB
-    symlink /storage/UsbDriveC /mnt/UsbDriveC
-    symlink /storage/UsbDriveD /mnt/UsbDriveD
-    symlink /storage/UsbDriveE /mnt/UsbDriveE
-    symlink /storage/UsbDriveF /mnt/UsbDriveF
-
-    export SECONDARY_STORAGE /storage/extSdCard:/storage/UsbDriveA:/storage/UsbDriveB:/storage/UsbDriveC:/storage/UsbDriveD:/storage/UsbDriveE:/storage/UsbDriveF
-    mkdir /storage/extSdCard 0000 system system
-    mkdir /storage/UsbDriveA 0000 system system
-    mkdir /storage/UsbDriveB 0000 system system
-    mkdir /storage/UsbDriveC 0000 system system
-    mkdir /storage/UsbDriveD 0000 system system
-    mkdir /storage/UsbDriveE 0000 system system
-    mkdir /storage/UsbDriveF 0000 system system
+    symlink /storage/sdcard1 /extSdCard
+    symlink /storage/sdcard1 /mnt/extSdCard
+    symlink /storage/sdcard /external_sd
+    symlink /storage/usbdisk /usbdisk
+    symlink /storage/usbdisk /mnt/usbdisk
 
 # To store widevine keybox
     symlink /data/app /factory
@@ -181,12 +167,12 @@ on boot
 
 # Permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
-    chown bluetooth bluetooth ro.bt.bdaddr_path
-#    chown bluetooth bluetooth /dev/ttySAC0
-#    chmod 0600 /dev/ttySAC0
+    chown bluetooth net_bt_stack ro.bt.bdaddr_path
+    chown bluetooth net_bt_stack /dev/ttyS2
+    chmod 0600 /dev/ttyS2
     chmod 0660 /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
+    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
 # permissions for sensors (accelerometer & magnetic & proximity)
     chown root system /dev/proximity
@@ -457,10 +443,6 @@ on boot
 # allow user space (atx) access to kernel pm debug
     chown system system /sys/module/capri_pm_dbg/parameters/debug
 
-#for bluetooth. permission for host interface
-    chown root bluetooth /dev/ttyS2
-    chmod 0777 /dev/ttyS2
-
 #for fm radio    
     copy /system/etc/local.prop /data/local.prop
     chown system bluetooth /data/local.prop
@@ -673,15 +655,7 @@ on property:persist.sys.dataprefer.simid=1
     write /data/atx/setsim.txt at*msetsim=2
     start set_simid
 
-#btld is only used for FM
-# Make sure we startup btld before hcid
-#service btld /system/bin/logwrapper /system/bin/btld -hb 3000000 -hp /dev/ttyS2 -lpm 0 -nice -7
-#service btld /system/bin/logwrapper /system/bin/btld -lpm 0 ;; low power mode on(1), off(0)
-#service btld /system/bin/logwrapper /system/bin/btld -lpm 1
-#    user root
-#    group bluetooth net_bt_admin
-#    disabled
-#    oneshot
+# TODO: btld is only used for FM
 
 # TVout
 service TvoutService_C /system/bin/bintvoutservice
