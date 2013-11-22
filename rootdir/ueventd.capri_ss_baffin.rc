@@ -44,4 +44,7 @@
 # /dev/sec_user_dump        0660   system     shell  
 
 # SYSTEM Status
-/dev/block/mmcblk0p11        0660   system     root  
+/dev/block/mmcblk0p11        0660   system     root
+
+# rfkill
+/dev/rfkill               0660   root       wifi
