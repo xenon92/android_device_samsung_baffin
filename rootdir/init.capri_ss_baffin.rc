@@ -68,7 +68,10 @@ on init
 
     symlink /efs /factory
     
-    symlink /dev/block/mmcblk0p11 /dev/block/param    
+    symlink /dev/block/mmcblk0p11 /dev/block/param
+
+# We will create our own ril-daemon service with different perm and sockets
+    stop ril-daemon
 
 on post-fs-data
 # we will remap this as /storage/sdcard with the sdcard fuse tool
@@ -447,11 +450,14 @@ on boot
     copy /system/etc/local.prop /data/local.prop
     chown system bluetooth /data/local.prop
     chmod 0660 /data/local.prop
-#    setprop service.brcm.bt.patchfile /system/bin/BCM2076B1_xxx.hcd
+    setprop service.brcm.bt.patchfile /system/bin/BCM4334B0_xxx.hcd
 # permissions for FMRadio of Broadcom
 #    chmod 0777 /system/bin/btld
     
-    
+    # for ril_prop
+    chown radio radio /proc/LinuStoreIII/ril_prop
+    chmod 0664 /proc/LinuStoreIII/ril_prop
+
 # SEC_PRODUCT_FEATURE_COMMON_USE_MULTISIM
     setprop ro.multisim.simslotcount 2
     
@@ -588,7 +594,7 @@ service geomagneticd /system/bin/geomagneticd
     user compass
     group system input
 
-service ril-daemon /system/bin/rild
+service capri-ril-daemon /system/bin/rild
     class main
     socket rild stream 660 root radio
     socket rild1 stream 660 root radio
@@ -843,3 +849,10 @@ service bugreport /system/bin/bugmailer.sh -v
 
 on property:ro.dumpstate.dmesg=1
     write /proc/sys/kernel/dmesg_restrict 0
+
+# Vibetonz
+service immvibed /system/bin/immvibed
+    class core
+    user shell
+    group shell
+    oneshot
