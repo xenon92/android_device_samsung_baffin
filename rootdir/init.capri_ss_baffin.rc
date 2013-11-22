@@ -450,7 +450,7 @@ on boot
     copy /system/etc/local.prop /data/local.prop
     chown system bluetooth /data/local.prop
     chmod 0660 /data/local.prop
-    setprop service.brcm.bt.patchfile /system/bin/BCM4334B0_xxx.hcd
+    setprop service.brcm.bt.patchfile /system/bin/BCM4334B0_002.001.013.0679.0000_03_Samsung_BaffinSpurCancellAlwaysOn.hcd
 # permissions for FMRadio of Broadcom
 #    chmod 0777 /system/bin/btld
     
