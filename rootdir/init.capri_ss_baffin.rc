@@ -293,8 +293,6 @@ on boot
     chown system radio /sys/class/sensors/proximity_sensor/prox_offset_pass
     chown system radio /sys/class/sensors/proximity_sensor/prox_thresh
 # Light_sensor
-    chown system radio /sys/class/input/input8/enable
-    chown system radio /sys/class/input/input8/poll_delay
     chown system radio /sys/class/sensors/light_sensor/lux
     chown system radio /sys/class/sensors/light_sensor/raw_data
     chown system radio /sys/class/sensors/light_sensor/vendor
@@ -325,10 +323,6 @@ on boot
     chown system radio /sys/class/sensors/magnetic_sensor/selftest    
     chown system radio /sys/class/sensors/magnetic_sensor/vendor
     chown system radio /sys/class/sensors/magnetic_sensor/name
-# NFC
-    setprop ro.nfc.port "I2C"
-    chmod 0600 /dev/pn544
-    chown nfc nfc /dev/pn544
 
 # Vibetonz
     chmod 0660 /dev/tspdrv
@@ -511,17 +505,6 @@ on fs
 #    chmod 0664 /sys/class/sec/gps/GPS_nRST/value
 #    mkdir /data/gps 771 system system
 #    chown system system /data/gps
-
-# NFC
-#    setprop ro.nfc.port "I2C"
-#    chmod 0666 /dev/bcm2079x
-#    chown nfc nfc /dev/bcm2079x
-#    mkdir /data/bcmnfc
-#    mkdir /data/bcmnfc/param
-#    chmod 0755 /data/bcmnfc
-#    chmod 0777 /data/bcmnfc/param
-#    chown nfc nfc /data/bcmnfc
-#    chown nfc nfc /data/bcmnfc/param
 
 ## Permissions for LCD
 #    chown system radio /sys/class/lcd/panel/lcd_type
