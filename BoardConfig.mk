@@ -8,19 +8,26 @@ USE_CAMERA_STUB := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/baffin
-TARGET_KERNEL_CONFIG := cyanogenmod_baffin_defconfig
+TARGET_KERNEL_CONFIG := omni_baffin_defconfig
+
+# assert
+TARGET_OTA_ASSERT_DEVICE := baffin,i9082,GT-I9082
 
 # Wifi
 BOARD_WLAN_DEVICE_REV := bcm4334
+WIFI_DRIVER_FW_PATH_STA     := "/system/etc/wifi/bcmdhd_sta.bin_b2"
+WIFI_DRIVER_FW_PATH_AP      := "/system/etc/wifi/bcmdhd_apsta.bin_b2"
+WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/wifi/bcmdhd_sta.bin_b2 nvram_path=/system/etc/wifi/nvram_net.txt"
+WIFI_DRIVER_MODULE_AP_ARG   := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin_b2 nvram_path=/system/etc/wifi/nvram_net.txt"
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/baffin/bluetooth
-
-# Wi-Fi
-BOARD_WLAN_DEVICE_REV := bcm4334
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := device/samsung/baffin/rootdir/fstab.capri_ss_baffin
 TARGET_RECOVERY_INITRC := device/samsung/baffin/rootdir/init.recovery.capri_ss_baffin.rc
 RECOVERY_FSTAB_VERSION := 2
+
+#TWRP
+DEVICE_RESOLUTION := 480x800

@@ -15,4 +15,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_baffin.mk
+    $(LOCAL_DIR)/full_baffin.mk \
+    $(LOCAL_DIR)/omni_baffin.mk
