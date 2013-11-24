@@ -1,4 +1,6 @@
-                Device Tree for Samsung Galaxy Grand Duos GT-I9082/I9082L
-                             Cynogenmod 10.2 project
+Device Tree (baffin)
+---
 
-                                WORK IN PROGRESS
+Device tree for OmniROM 4.4 for Samsung Galaxy Grand GT-I9082/I9082L.
+
+Device Code Name: baffin
