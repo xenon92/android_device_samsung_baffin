@@ -1,6 +1,9 @@
 # Inherit common device configuration
 $(call inherit-product, device/samsung/bcm-common/device.mk)
 
+# Inherit device specific vendor files
+$(call inherit-product-if-exists, vendor/samsung/baffin/baffin-vendor.mk)
+
 LOCAL_PATH := device/samsung/baffin
 
 # Init files
