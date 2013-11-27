@@ -445,12 +445,25 @@ on boot
     chown system bluetooth /data/local.prop
     chmod 0660 /data/local.prop
     setprop service.brcm.bt.patchfile /system/bin/BCM4334B0_002.001.013.0679.0000_03_Samsung_BaffinSpurCancellAlwaysOn.hcd
+
 # permissions for FMRadio of Broadcom
 #    chmod 0777 /system/bin/btld
     
+    # for multi csc
+    chown radio radio /proc/LinuStoreIII/efs_info
+    chmod 0664 /proc/LinuStoreIII/efs_info
+    # for protecting key string
+    chown radio radio /proc/LinuStoreIII/keystr
+    chmod 0664 /proc/LinuStoreIII/keystr
     # for ril_prop
     chown radio radio /proc/LinuStoreIII/ril_prop
     chmod 0664 /proc/LinuStoreIII/ril_prop
+    # for fsbuild_check
+    chown radio radio /proc/LinuStoreIII/fsbuild_check
+    chmod 0664 /proc/LinuStoreIII/fsbuild_check
+    # for recovery_opts
+    chown system radio /proc/LinuStoreIII/recovery_opts
+    chmod 0664 /proc/LinuStoreIII/recovery_opts
 
 # SEC_PRODUCT_FEATURE_COMMON_USE_MULTISIM
     setprop ro.multisim.simslotcount 2
