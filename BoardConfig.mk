@@ -20,9 +20,6 @@ WIFI_DRIVER_MODULE_AP_ARG := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nv
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/baffin/bluetooth
 
-# Wi-Fi
-BOARD_WLAN_DEVICE_REV := bcm4334
-
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := device/samsung/baffin/rootdir/fstab.capri_ss_baffin
